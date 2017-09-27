@@ -1,61 +1,59 @@
 #include <iostream>
+#include <vector>
 
-void zero_matrix(int ** matrix, int m, int n)
+/*
+ * Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and column are to 0.
+ *
+ */
+
+
+void nullify_rows(std::vector<std::vector<int>> &matrix, int row)
 {
-   for (int r = 0; r < m; ++r)
-   {
-       for(int c = 0; c < n; ++c)
-       {    
+}
+
+void nullify_cols(std::vector<std::vector<int>> &matrix, int col)
+{
+}
+
+void set_zeros(std::vector<std::vector<int>> &matrix)
+{
+    // Vectors to keep track of rows and cols with zeros
+    std::vector<bool> rows(matrix.size());
+    std::vector<bool> cols(matrix[0].size());
+
+    // Iterate over matrix to find rows and cols with zeros
+    for(int r = 0; r < matrix.size(); ++r)
+    {
+        for(int c = 0; c < matrix[r].size(); ++c)
+        {
             if(matrix[r][c] == 0)
             {
-                // do something
+                rows[r] = true;
+                cols[c] = true;
             }
-       }
-   } 
+        }
+    }
 }
 
 
 int main()
 {
-    int m = 3;
-    int n = 2;
-    
-    // Create an array of pointers that points to more arrays
-    // Assign 1s
-    int ** matrix;
+    // initializing matrix
+    std::vector<std::vector<int>> matrix(3, std::vector<int>(4, 1));
 
-    matrix = new int*[m];
-    for (int r = 0; r < m; ++r)
+    // adding a zero element
+    matrix[0][1] = 0;
+
+    // printing matrix
+    std::vector<std::vector<int>>::iterator row;
+    for(row = matrix.begin(); row != matrix.end(); ++row)
     {
-        matrix[r] = new int[n];
-        
-        for(int c = 0; c < n; ++c)
-            matrix[r][c] = 1;
-    }
-
-    // Assign one 0
-    matrix[1][0] = 0;
-
-    // Printing array
-
-    for (int r = 0; r < m; ++r)
-    {
-        for(int c = 0; c < n; ++c)
+        std::vector<int>::iterator col;
+        for(col = row->begin(); col != row->end(); ++col)
         {
-            std::cout << matrix[r][c];
+            std::cout << *col;
         }
         std::cout << "\n";
     }
-
-    zero_matrix(matrix, m, n);
-
-    // Free each sub-array
-    for(int r = 0; r < m; ++r)
-        delete[] matrix[r];
-
-    // Free the array of pointers
-    delete[] matrix;
-
-
     return 0;
 }
