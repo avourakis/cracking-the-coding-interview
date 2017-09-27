@@ -9,11 +9,14 @@
 
 void nullify_rows(std::vector<std::vector<int>> &matrix, int row)
 {
-
+    for(int i = 0; i < matrix[0].size(); ++i)
+        matrix[row][i] = 0;
 }
 
 void nullify_cols(std::vector<std::vector<int>> &matrix, int col)
 {
+    for(int i = 0; i < matrix.size(); ++i)
+        matrix[i][col] = 0;
 }
 
 void set_zeros(std::vector<std::vector<int>> &matrix)
@@ -40,32 +43,20 @@ void set_zeros(std::vector<std::vector<int>> &matrix)
     for(int i = 0; i < rows.size(); ++i)
     {
         if(rows[i] == true)
-        {
             nullify_rows(matrix, i);
-        }
     }
 
     // nullify cols
     for(int i = 0; i < cols.size(); ++i)
     {
         if(cols[i] == true)
-        {
             nullify_cols(matrix, i);
-        }
     }
 
 }
 
-
-int main()
+void print_matrix(std::vector<std::vector<int>> &matrix)
 {
-    // initializing matrix
-    std::vector<std::vector<int>> matrix(3, std::vector<int>(4, 1));
-
-    // adding a zero element
-    matrix[0][1] = 0;
-
-    // printing matrix
     std::vector<std::vector<int>>::iterator row;
     for(row = matrix.begin(); row != matrix.end(); ++row)
     {
@@ -76,5 +67,24 @@ int main()
         }
         std::cout << "\n";
     }
+}
+
+int main()
+{
+    // initializing matrix
+    std::vector<std::vector<int>> matrix(3, std::vector<int>(4, 1));
+
+    // adding a zero element
+    matrix[0][1] = 0;
+
+    // printing matrix
+    print_matrix(matrix);
+
+    // nullifying 
+    set_zeros(matrix);
+
+    // printing matrix
+    print_matrix(matrix);
+
     return 0;
 }
