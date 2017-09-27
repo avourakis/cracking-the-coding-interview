@@ -9,6 +9,7 @@
 
 void nullify_rows(std::vector<std::vector<int>> &matrix, int row)
 {
+
 }
 
 void nullify_cols(std::vector<std::vector<int>> &matrix, int col)
@@ -33,6 +34,26 @@ void set_zeros(std::vector<std::vector<int>> &matrix)
             }
         }
     }
+
+
+    // nullify rows
+    for(int i = 0; i < rows.size(); ++i)
+    {
+        if(rows[i] == true)
+        {
+            nullify_rows(matrix, i);
+        }
+    }
+
+    // nullify cols
+    for(int i = 0; i < cols.size(); ++i)
+    {
+        if(cols[i] == true)
+        {
+            nullify_cols(matrix, i);
+        }
+    }
+
 }
 
 
